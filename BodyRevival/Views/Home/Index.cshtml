@@ -1,34 +1,26 @@
-﻿@{
+﻿@using BodyRevival.ViewModels
+@model HomeViewModel
+@{
     ViewData["Title"] = "Index";
 }
 <section class="hero-section">
     <div class="hs-slider owl-carousel">
-        <div class="hs-item set-bg" data-setbg="img/hero/hero-1.jpg">
+        @foreach(var item in Model.slider)
+        {
+        <div class="hs-item set-bg" data-setbg="uploads/@item.Image">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 offset-lg-6">
                         <div class="hi-text">
-                            <span>Shape your body</span>
-                            <h1>Be <strong>strong</strong> traning hard</h1>
-                            <a href="#" class="primary-btn">Get info</a>
+                            <span>@item.FirstMotivationWord</span>
+                            <h1>@item.SecondMotivationWord</h1>
+                            <a href="@item.ButtonUrl" class="primary-btn">@item.ButtonText</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="hs-item set-bg" data-setbg="img/hero/hero-2.jpg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 offset-lg-6">
-                        <div class="hi-text">
-                            <span>Shape your body</span>
-                            <h1>Be <strong>strong</strong> traning hard</h1>
-                            <a href="#" class="primary-btn">Get info</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        }
     </div>
 </section>
 <!-- Hero Section End -->
@@ -268,56 +260,36 @@
             </div>
         </div>
         <div class="row">
-            <div class="ts-slider owl-carousel">
-                <div class="col-lg-4">
-                    <div class="ts-item set-bg" data-setbg="img/team/team-1.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
+            @if (Model.teachers.Count > 3)
+            {
+                <div class="ts-slider owl-carousel">
+                    @foreach (var trainer in Model.teachers)
+                    {
+                        <div class="col-lg-4">
+                            <div class="ts-item set-bg" data-setbg="uploads/@trainer.Image">
+                                <div class="ts_text">
+                                    <h4>@trainer.User.FullName</h4>
+                                    <span>Gym Trainer</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                foreach (var trainer in Model.teachers)
+                {
+                    <div class="col-lg-4">
+                        <div class="ts-item set-bg" data-setbg="uploads/@trainer.Image">
+                            <div class="ts_text">
+                                <h4>@trainer.User.FullName</h4>
+                                <span>@trainer.Speciality</span><span>Trainer</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="ts-item set-bg" data-setbg="img/team/team-2.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="ts-item set-bg" data-setbg="img/team/team-3.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="ts-item set-bg" data-setbg="img/team/team-4.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="ts-item set-bg" data-setbg="img/team/team-5.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="ts-item set-bg" data-setbg="img/team/team-6.jpg">
-                        <div class="ts_text">
-                            <h4>Athart Rachel</h4>
-                            <span>Gym Trainer</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                }
+            }
         </div>
     </div>
 </section>

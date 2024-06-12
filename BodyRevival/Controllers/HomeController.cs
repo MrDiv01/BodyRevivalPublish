@@ -1,13 +1,27 @@
+using BodyRevival.Data;
+using BodyRevival.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace BodyRevival.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly ApplicationDbContext _dbContext;
+
+        public HomeController(ApplicationDbContext dbContext)
         {
-            return View();
+            _dbContext = dbContext;
+        }
+        public async Task<IActionResult> Index()
+        {
+            HomeViewModel viewModel = new()
+            {
+                teachers =await _dbContext.Teacher.Include(x=>x.User).Where(_ => _.IsUpdated == true).ToListAsync(),
+                 slider =await _dbContext.HomeSliders.ToListAsync()
+            };
+            return View(viewModel);
         }
     }
 }

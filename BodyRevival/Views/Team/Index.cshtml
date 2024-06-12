@@ -1,4 +1,5 @@
-﻿
+﻿@using BodyRevival.Models
+@model List<Teacher>
 @{
     ViewData["Title"] = "Index";
 }
@@ -34,96 +35,18 @@
             </div>
         </div>
         <div class="row">
+            @foreach(var item in Model)
+            {
             <div class="col-lg-4 col-sm-6">
-                <div class="ts-item set-bg" data-setbg="img/team/team-1.jpg">
+                <div class="ts-item set-bg" data-setbg="uploads/@item.Image">
                     <div class="ts_text">
-                        <h4>Athart Rachel</h4>
-                        <span>Gym Trainer</span>
-                        <div class="tt_social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa  fa-envelope-o"></i></a>
-                        </div>
+                        <h4>@item.User.FullName</h4>
+                        <span>@item.Speciality</span>
+                        <span>Trainer</span>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="ts-item set-bg" data-setbg="img/team/team-2.jpg">
-                    <div class="ts_text">
-                        <h4>Athart Rachel</h4>
-                        <span>Gym Trainer</span>
-                        <div class="tt_social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa  fa-envelope-o"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="ts-item set-bg" data-setbg="img/team/team-3.jpg">
-                    <div class="ts_text">
-                        <h4>Athart Rachel</h4>
-                        <span>Gym Trainer</span>
-                        <div class="tt_social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa  fa-envelope-o"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="ts-item set-bg" data-setbg="img/team/team-4.jpg">
-                    <div class="ts_text">
-                        <h4>Athart Rachel</h4>
-                        <span>Gym Trainer</span>
-                        <div class="tt_social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa  fa-envelope-o"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="ts-item set-bg" data-setbg="img/team/team-5.jpg">
-                    <div class="ts_text">
-                        <h4>Athart Rachel</h4>
-                        <span>Gym Trainer</span>
-                        <div class="tt_social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa  fa-envelope-o"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="ts-item set-bg" data-setbg="img/team/team-6.jpg">
-                    <div class="ts_text">
-                        <h4>Athart Rachel</h4>
-                        <span>Gym Trainer</span>
-                        <div class="tt_social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa  fa-envelope-o"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </section>

@@ -63,12 +63,21 @@
                 <li><a asp-action="Index" asp-controller="Blog">Blog</a></li>
 
                 <li><a asp-action="Index" asp-controller="Contact">Contact</a></li>
+                <li><a asp-action="Index" asp-controller="Video">Videos</a></li>
+
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div class="canvas-social">
-            <a href="login.html"><i class="fa-solid fa-right-to-bracket"></i></a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a asp-action="Logout" asp-controller="Login"><i class="fa-solid fa-right-to-bracket"></i></a>
+            }
+            else
+            {
+                <a asp-action="index" asp-controller="Login"><i class="fa-solid fa-user-plus"></i></a>
 
+            }
             <a href="#"><i class="fa fa-facebook"></i></a>
             <a href="#"><i class="fa fa-twitter"></i></a>
             <a href="#"><i class="fa fa-youtube-play"></i></a>
@@ -110,6 +119,8 @@
                             <li><a asp-action="Index" asp-controller="Blog">Blog</a></li>
 
                             <li><a asp-action="Index" asp-controller="Contact">Contact</a></li>
+                            <li><a asp-action="Index" asp-controller="Video">Videos</a></li>
+
 
                         </ul>
                     </nav>
@@ -118,7 +129,15 @@
                     <div class="top-option">
 
                         <div class="to-social">
-                            <a asp-action="Index" asp-controller="Login"><i class="fa-solid fa-right-to-bracket"></i></a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a asp-action="Logout" asp-controller="Login"><i class="fa-solid fa-right-to-bracket"></i></a>
+                            }
+                            else
+                            {
+                                <a asp-action="index" asp-controller="Login"><i class="fa-solid fa-user-plus"></i></a>
+
+                            }
                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>
                             <a href="#"><i class="fa fa-youtube-play"></i></a>

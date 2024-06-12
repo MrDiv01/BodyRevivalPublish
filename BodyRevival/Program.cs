@@ -31,7 +31,7 @@ namespace BodyRevival
             builder.Services.AddScoped<LayoutService>();
             var app = builder.Build();
 
-            
+
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {

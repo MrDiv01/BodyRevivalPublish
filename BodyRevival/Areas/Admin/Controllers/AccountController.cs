@@ -1,8 +1,10 @@
 ﻿using BodyRevival.Areas.Admin.ViewModels;
+using BodyRevival.Data;
 using BodyRevival.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BodyRevival.Areas.Admin.Controllers
 {
@@ -11,11 +13,13 @@ namespace BodyRevival.Areas.Admin.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly ApplicationDbContext _dbContext;
 
-        public AccountController(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ApplicationDbContext dbContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _dbContext = dbContext;
         }
         public IActionResult Index()
         {
@@ -32,19 +36,31 @@ namespace BodyRevival.Areas.Admin.Controllers
             {
                 return View();
             }
-            AppUser user = await _userManager.FindByNameAsync(adminLogin.UserName);
-            if(user == null)
+            AppUser user = await _userManager.FindByEmailAsync(adminLogin.Mail);
+            if (user == null)
             {
-                ModelState.AddModelError("", "UserName or Password is Incorrect");
+                ModelState.AddModelError("", "Mail or Password is Incorrect");
                 return View();
             }
-            var result =await _signInManager.PasswordSignInAsync(user,adminLogin.Password,false,false);
+            var result = await _signInManager.PasswordSignInAsync(user, adminLogin.Password, false, false);
             if (!result.Succeeded)
             {
                 ModelState.AddModelError("", "UserName or Password is Incorrect");
                 return View();
             }
-            return RedirectToAction("Index","Dashboard");
+            var role = await _userManager.GetRolesAsync(user);
+            if (role.Contains("Teacher"))
+            {
+                return RedirectToAction("Profile", "ConfigureTeacher");
+            }
+            else if (role.Contains("SuperAdmin"))
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
+            else
+            {
+                return Forbid();
+            }
         }
 
         public async Task<IActionResult> LogOut()
@@ -52,12 +68,13 @@ namespace BodyRevival.Areas.Admin.Controllers
             if (User.Identity.IsAuthenticated)
             {
 
-            await _signInManager.SignOutAsync();
+                await _signInManager.SignOutAsync();
             }
             return RedirectToAction("LogIn");
         }
+        [HttpGet]
 
-        [Authorize(Roles ="SuperAdmin")]
+        [Authorize(Roles = "SuperAdmin")]
         public IActionResult Register()
         {
             return View();
@@ -69,8 +86,8 @@ namespace BodyRevival.Areas.Admin.Controllers
             {
                 return View();
             }
-            AppUser member =await _userManager.FindByNameAsync(model.UserName);
-            if(member != null)
+            AppUser member = await _userManager.FindByNameAsync(model.UserName);
+            if (member != null)
             {
                 ModelState.AddModelError("Username", "USerName Has Taken");
                 return View();
@@ -83,14 +100,14 @@ namespace BodyRevival.Areas.Admin.Controllers
             }
             member = new AppUser
             {
-                FullName = model.UserName,
+                FullName = model.Name,
                 UserName = model.UserName,
                 Email = model.Email,
             };
-            var result = await _userManager.CreateAsync(member,model.Password);
+            var result = await _userManager.CreateAsync(member, model.Password);
             if (!result.Succeeded)
             {
-                foreach(var err in result.Errors)
+                foreach (var err in result.Errors)
                 {
                     ModelState.AddModelError("", err.Description);
                     return View();
@@ -105,7 +122,71 @@ namespace BodyRevival.Areas.Admin.Controllers
                     return View();
                 }
             }
-            return RedirectToAction("Index","Dashboard");
+            return RedirectToAction("Index", "Dashboard");
         }
+        [HttpGet]
+        [Authorize(Roles = "SuperAdmin")]
+        public async Task<IActionResult> TeacherRegister()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> TeacherRegister(TeacherRegisterViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            AppUser member = await _userManager.FindByEmailAsync(model.Email);
+            if (member != null)
+            {
+                ModelState.AddModelError("", "Email Has Taken");
+                return View();
+            }
+            AppUser memberUserName = await _userManager.FindByNameAsync(model.UserName);
+            if (memberUserName != null)
+            {
+                ModelState.AddModelError("", "Username Has Taken");
+                return View();
+            }
+            member = new AppUser
+            {
+                FullName = model.Name,
+                UserName = model.UserName,
+                Email = model.Email,
+            };
+            var result = await _userManager.CreateAsync(member, model.Password);
+            if (!result.Succeeded)
+            {
+                foreach (var err in result.Errors)
+                {
+                    ModelState.AddModelError("", err.Description);
+                    return View();
+                }
+            }
+            var roleresult = await _userManager.AddToRoleAsync(member, "teacher");
+            if (!roleresult.Succeeded)
+            {
+                foreach (var err in roleresult.Errors)
+                {
+                    ModelState.AddModelError("", err.Description);
+                    return View();
+                }
+            }
+            Teacher teacher = new()
+            {
+                Weight = 0,
+                Height = 0,
+                Description = "test",
+                UserId = member.Id,
+                Image = "test",
+                IsUpdated = false
+            };
+            await _dbContext.Teacher.AddAsync(teacher);
+            await _dbContext.SaveChangesAsync();
+
+            return RedirectToAction("Index", "Dashboard");
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿
+﻿@using BodyRevival.ViewModels
+@model LoginViewModel
 @{
     ViewData["Title"] = "Index";
     ViewBag.Title = "Login";
@@ -11,18 +12,20 @@
     <h2>Login</h2>
     <form action="#" method="POST">
         <div class="form-group">
-            <label for="username">Username</label>
+            <label for="username">Email</label>
             <div class="input-container">
-                <input type="text" id="username" name="username" required>
+                <input type="text" id="username" asp-for="Email" required>
             </div>
+            <span asp-validation-for="Email" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
             <div class="input-container">
-                <input type="password" id="password" name="password" required>
-                <span class="password-toggle" onclick="togglePasswordVisibility()">&#128065;</span>
+                <input type="password" id="password" asp-for="Password" required>
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
         </div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
             <button type="submit">Login</button>
         </div>
