@@ -1,12 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BodyRevival.Data;
+using BodyRevival.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BodyRevival.Controllers
 {
     public class DetailController : Controller
     {
-        public IActionResult Index(int id)
+        private readonly ApplicationDbContext _dbContext;
+
+        public DetailController(ApplicationDbContext dbContext)
         {
-            return View();
+            _dbContext = dbContext;
+        }
+        public async Task<IActionResult> Index(int id)
+        {
+            Packet packet  =await _dbContext.Packet.Include(x=>x.Teacher).ThenInclude(c=>c.User).FirstOrDefaultAsync(_=>_.Id == id);
+            return View(packet);
         }
     }
 }

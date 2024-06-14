@@ -1,0 +1,74 @@
+﻿@using BodyRevival.Models
+@model Packet
+@{
+    ViewData["Title"] = "Index";
+}
+<section class="breadcrumb-section set-bg" data-setbg="../../img/breadcrumb-bg.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb-text">
+                    <h2>Classes detail</h2>
+                    <div class="bt-option">
+                        <a href="./index.html">Home</a>
+                        <a href="#">Classes</a>
+                        <span>Body building</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Class Details Section Begin -->
+<section class="class-details-section spad">
+    <div class="container">
+        <div class="row" style="justify-content: center;">
+            <div class="col-lg-8">
+                <div class="class-details-text">
+                    <div class="cd-pic">
+                        <img src="uploads/@Model.Image" alt="">
+                    </div>
+                    <div class="cd-text">
+                        <div class="cd-single-item">
+                            <h3>@Model.Name</h3>
+                            <p>
+                               @Model.Description
+                            </p>
+                        </div>
+                        <div class="cd-single-item">
+                            <h3>Trainer</h3>
+                            <p>
+                               @Model.Teacher.Description
+                            </p>
+                        </div>
+                    </div>
+                    <div class="cd-trainer">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="cd-trainer-pic">
+                                    <img src="~/uploads/@Model.Teacher.Image" alt="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="cd-trainer-text">
+                                    <div class="trainer-title">
+                                        <h4>@Model.Teacher.User.FullName</h4>
+                                        <span>@Model.Teacher.Speciality</span>
+                                    </div>
+                                    <ul class="trainer-info">
+                                        <li><span>Weight</span>@Model.Teacher.Weight</li>
+                                        <li><span>Height</span>@Model.Teacher.Height</li>
+                                        <li><span>Occupation</span>@Model.Teacher.Speciality</li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

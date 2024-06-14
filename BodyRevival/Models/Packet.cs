@@ -12,7 +12,7 @@ namespace BodyRevival.Models
         public int AttenDance {  get; set; }
         public string Image { get; set; }
         [NotMapped]
-        public string ImageFile {  get; set; }
+        public IFormFile ImageFile {  get; set; }
 
     }
 }

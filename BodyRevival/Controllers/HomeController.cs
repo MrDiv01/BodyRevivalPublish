@@ -19,7 +19,8 @@ namespace BodyRevival.Controllers
             HomeViewModel viewModel = new()
             {
                 teachers =await _dbContext.Teacher.Include(x=>x.User).Where(_ => _.IsUpdated == true).ToListAsync(),
-                 slider =await _dbContext.HomeSliders.ToListAsync()
+                 slider =await _dbContext.HomeSliders.ToListAsync(),
+                  packets = await _dbContext.Packet.ToListAsync()
             };
             return View(viewModel);
         }

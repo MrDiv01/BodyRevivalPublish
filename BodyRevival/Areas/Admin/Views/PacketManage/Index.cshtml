@@ -1,0 +1,54 @@
+﻿@using BodyRevival.Models
+@model List<Packet>
+@{
+    ViewData["Title"] = "Index";
+}
+<div id="tableFooter" class="col-lg-10 col-10 layout-spacing" style="margin-left:10%;margin-top:5%">
+    <div class="statbox widget box box-shadow">
+        <div class="widget-header">
+            <div class="row">
+                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                    <h4>Table with Footer</h4>
+                </div>
+            </div>
+        </div>
+        <div class="widget-content widget-content-area">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-condensed mb-4">
+                    <a asp-action="Create" class="btn btn-primary mb-2">Create</a>
+                    <thead>
+                        <tr>
+                            <th>Teacher Name</th>
+                            <th>Lesson Name</th>
+                            <th>Titile</th>
+                            <th>Description</th>
+                            <th>Attendance</th>
+                            <th>Image</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Teacher.User.FullName</td>
+                                <td>@item.Name</td>
+                                <td>@item.Titile</td>
+                                <td>@item.Description</td>
+                                <td>@item.AttenDance</td>
+                                <td><img style="width:50%" src="~/uploads/@item.Image"></td>
+                                <td class="text-center">
+                                    <ul class="table-controls">
+                                        <li style="list-style:none"><a asp-action="Update" asp-route-Id="@item.Id" class="btn btn-warning mb-2">Update</a></li>
+                                        <li style="list-style:none"><a asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger mb-2">Delete</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
