@@ -2,7 +2,7 @@
 
 namespace BodyRevival.Areas.Admin.Controllers
 {
-    public class LessonController : Controller
+    public class ContactManageController : Controller
     {
         public IActionResult Index()
         {

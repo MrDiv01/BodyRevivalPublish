@@ -7,5 +7,7 @@ namespace BodyRevival.ViewModels
         public List<Teacher> teachers {  get; set; }
         public List<HomeSlider> slider { get; set; }
         public List<Packet> packets { get; set; }
+        public List<Lesson> lessons { get; set; }
+            
     }
 }

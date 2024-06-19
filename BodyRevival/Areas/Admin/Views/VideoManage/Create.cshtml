@@ -1,0 +1,27 @@
+﻿@model Videos
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container" style="margin-top:5%">
+    <form id="lessonForm" enctype="multipart/form-data" method="post" asp-action="Create">
+        <div class="form-group">
+            <label asp-for="VideoLink">VideoUrl</label>
+            <input asp-for="VideoLink" id="nameInput" class="form-control" placeholder="VideoLink">
+        </div>
+        <span asp-validation-for="VideoLink" class="text-danger"></span>
+
+        <div class="form-group">
+            <label asp-for="Title">Title</label>
+            <input asp-for="Title" id="Title" class="form-control" placeholder="Title">
+        </div>
+        <span asp-validation-for="Title" class="text-danger"></span>
+
+        <div class="form-group">
+            <label asp-for="Description">Description</label>
+            <input asp-for="Description" id="durationInput" class="form-control" placeholder="Description">
+        </div>
+        <span asp-validation-for="Description" class="text-danger"></span>
+        <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+    </form>
+</div>

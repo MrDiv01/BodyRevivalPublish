@@ -4,9 +4,7 @@ namespace BodyRevival.Models
 {
     public class Videos:BaseEntity
     {
-        public string Image { get; set; }
-        [NotMapped]
-        public IFormFile ImageFile { get; set; }
+      
         public string VideoLink { get; set; }
         public string Title {  get; set; }
         public string Description { get; set; }

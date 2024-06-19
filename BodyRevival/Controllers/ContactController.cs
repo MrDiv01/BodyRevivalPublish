@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BodyRevival.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BodyRevival.Controllers
 {
@@ -8,5 +9,6 @@ namespace BodyRevival.Controllers
         {
             return View();
         }
+       
     }
 }

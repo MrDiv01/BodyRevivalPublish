@@ -2,12 +2,15 @@
 using BodyRevival.Data;
 using BodyRevival.Helper;
 using BodyRevival.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace BodyRevival.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "SuperAdmin")]
+
     public class PacketManageController : Controller
     {
         private readonly ApplicationDbContext _dbContext;

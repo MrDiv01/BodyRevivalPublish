@@ -1,5 +1,5 @@
 ﻿@using BodyRevival.Models
-@model List<Packet>
+@model List<Lesson>
 @{
     ViewData["Title"] = "Index";
 }
@@ -18,12 +18,10 @@
                     <a asp-action="Create" class="btn btn-primary mb-2">Create</a>
                     <thead>
                         <tr>
-                            <th>Teacher Name</th>
                             <th>Lesson Name</th>
-                            <th>Titile</th>
-                            <th>Description</th>
-                            <th>Attendance</th>
-                            <th>Image</th>
+                            <th>Duration</th>
+                            <th>Cost</th>
+                            <th>Detail</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -31,15 +29,13 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>@item.Teacher.User.FullName</td>
                                 <td>@item.Name</td>
-                                <td>@item.Titile</td>
-                                <td>@item.Description</td>
-                                <td>@item.AttenDance</td>
-                                <td><img style="width:50%" src="~/uploads/@item.Image"></td>
+                                <td>@item.Duration</td>
+                                <td>@item.Cost</td>
+                                <td>@item.Details</td>
                                 <td class="text-center">
                                     <ul class="table-controls">
-                                        @* <li style="list-style:none"><a asp-action="Update" asp-route-Id="@item.Id" class="btn btn-warning mb-2">Update</a></li> *@
+                                        <li style="list-style:none"><a asp-action="Update" asp-route-Id="@item.Id" class="btn btn-warning mb-2">Update</a></li>
                                         <li style="list-style:none"><a asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger mb-2">Delete</a></li>
                                     </ul>
                                 </td>

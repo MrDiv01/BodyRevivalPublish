@@ -1,4 +1,6 @@
-﻿@{
+﻿@using BodyRevival.Models
+@model Blog
+@{
     ViewData["Title"] = "Index";
 }
 <!-- Blog Details Hero Section Begin -->
@@ -7,11 +9,9 @@
         <div class="row">
             <div class="col-lg-8 p-0 m-auto">
                 <div class="bh-text">
-                    <h3>Workout nutrition explained. What to eat before, during, and after exercise.</h3>
+                    <h3>@Model.Title</h3>
                     <ul>
-                        <li>by Admin</li>
-                        <li>Aug,15, 2019</li>
-                        <li>20 Comment</li>
+                        <li>@Model.OrganizationTime.ToString("yyyy-MM-dd HH:mm:ss")</li>
                     </ul>
                 </div>
             </div>
@@ -27,17 +27,13 @@
                 <div class="blog-details-text">
                     <div class="blog-details-pic">
                         <div class="blog-details-pic-item">
-                            <img src="~/img/blog/details/details-2.jpg" alt="">
+                            <img src="../../uploads/@Model.Image" alt="">
                         </div>
                     </div>
                     <div class="blog-details-desc">
-                        <h2 style="color:#fff;">WHAT WE CAN OFFER</h2>
+                        <h2 style="color:#fff;">@Model.Title</h2>
                         <p>
-                            Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            @Model.Description
                         </p>
                     </div>
                 </div>
@@ -46,5 +42,35 @@
     </div>
 </section>
 
-
-
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        if (window.matchMedia('(max-width: 767px)').matches) {
+            var style = document.createElement('style');
+            style.innerHTML = `
+                .blog-details-pic {
+                    margin-bottom: 20px;
+                }
+                .blog-details-pic img {
+                    max-width: 100%;
+                    height: auto;
+                    display: block;
+                    margin: 0 auto;
+                }
+                .blog-details-desc h2 {
+                    font-size: 22px;
+                    margin-bottom: 10px;
+                }
+                .blog-details-desc p {
+                    font-size: 14px;
+                    max-height: 200px;
+                    overflow-y: auto;
+                }
+                .blog-details-text {
+                    display: flex !important;
+                    flex-direction: column;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    });
+</script>

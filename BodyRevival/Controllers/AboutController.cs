@@ -18,8 +18,11 @@ namespace BodyRevival.Controllers
         {
             AboutViewModel viewModel = new()
             {
-                teachers = await _dbContext.Teacher.Include(x => x.User).Where(_ => _.IsUpdated == true).ToListAsync()
+                teachers = await _dbContext.Teacher.Include(x => x.User).Where(_ => _.IsUpdated == true).ToListAsync(),
+                about = await _dbContext.About.FirstOrDefaultAsync()
             };
+            if(viewModel == null)
+                return NotFound();
             return View(viewModel);
         }
     }

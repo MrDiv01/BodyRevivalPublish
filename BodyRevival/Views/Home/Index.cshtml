@@ -119,7 +119,7 @@
                 <div class="bs-text">
                     <h2>registration now to get more deals</h2>
                     <div class="bt-tips">Where health, beauty and fitness meet.</div>
-                    <a href="#" class="primary-btn  btn-normal">Appointment</a>
+                    <a asp-action="Index" asp-controller="CallBack" class="primary-btn  btn-normal">Appointment</a>
                 </div>
             </div>
         </div>
@@ -138,63 +138,22 @@
             </div>
         </div>
         <div class="row justify-content-center">
+            @foreach(var item in Model.lessons)
+            {
             <div class="col-lg-4 col-md-8">
                 <div class="ps-item">
-                    <h3>Class drop-in</h3>
+                    <h3>@item.Name</h3>
                     <div class="pi-price">
-                        <h2>$ 39.0</h2>
-                        <span>SINGLE CLASS</span>
+                        <h2>@item.Cost</h2>
+                        <span>@item.Duration</span>
                     </div>
                     <ul>
-                        <li>Free riding</li>
-                        <li>Unlimited equipments</li>
-                        <li>Personal trainer</li>
-                        <li>Weight losing classes</li>
-                        <li>Month to mouth</li>
-                        <li>No time restriction</li>
+                        <li>@item.Details</li>
                     </ul>
-                    <a href="#" class="primary-btn pricing-btn">Enroll now</a>
-                    <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
+                        <a asp-action="Index" asp-controller="CallBack" class="primary-btn pricing-btn">Enroll now</a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-8">
-                <div class="ps-item">
-                    <h3>12 Month unlimited</h3>
-                    <div class="pi-price">
-                        <h2>$ 99.0</h2>
-                        <span>SINGLE CLASS</span>
-                    </div>
-                    <ul>
-                        <li>Free riding</li>
-                        <li>Unlimited equipments</li>
-                        <li>Personal trainer</li>
-                        <li>Weight losing classes</li>
-                        <li>Month to mouth</li>
-                        <li>No time restriction</li>
-                    </ul>
-                    <a href="#" class="primary-btn pricing-btn">Enroll now</a>
-                    <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-8">
-                <div class="ps-item">
-                    <h3>6 Month unlimited</h3>
-                    <div class="pi-price">
-                        <h2>$ 59.0</h2>
-                        <span>SINGLE CLASS</span>
-                    </div>
-                    <ul>
-                        <li>Free riding</li>
-                        <li>Unlimited equipments</li>
-                        <li>Personal trainer</li>
-                        <li>Weight losing classes</li>
-                        <li>Month to mouth</li>
-                        <li>No time restriction</li>
-                    </ul>
-                    <a href="#" class="primary-btn pricing-btn">Enroll now</a>
-                    <a href="#" class="thumb-icon"><i class="fa fa-picture-o"></i></a>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </section>
@@ -234,7 +193,7 @@
                         <span>Our Team</span>
                         <h2>TRAIN WITH EXPERTS</h2>
                     </div>
-                    <a href="team.html" class="primary-btn btn-normal appoinment-btn">appointment</a>
+                    <a asp-action="Index" asp-controller="Team" class="primary-btn btn-normal appoinment-btn">appointment</a>
                 </div>
             </div>
         </div>

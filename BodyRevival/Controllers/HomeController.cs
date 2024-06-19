@@ -20,8 +20,11 @@ namespace BodyRevival.Controllers
             {
                 teachers =await _dbContext.Teacher.Include(x=>x.User).Where(_ => _.IsUpdated == true).ToListAsync(),
                  slider =await _dbContext.HomeSliders.ToListAsync(),
-                  packets = await _dbContext.Packet.ToListAsync()
+                  packets = await _dbContext.Packet.ToListAsync(),
+                  lessons = await _dbContext.Lessons.ToListAsync(),
             };
+            if(viewModel.teachers == null)
+                return NotFound();
             return View(viewModel);
         }
     }

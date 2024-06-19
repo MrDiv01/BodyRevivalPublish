@@ -1,4 +1,6 @@
-﻿@{
+﻿@using BodyRevival.Models
+@model List<Blog>
+@{
     ViewData["Title"] = "Index";
 }
 
@@ -26,117 +28,27 @@
     <div class="container">
         <div class="row" style="justify-content: center !important;">
             <div class="col-lg-8 p-0">
-                <div class="blog-item">
-                    <div class="bi-pic">
-                        <img src="img/blog/blog-1.jpg" alt="">
+                @foreach (var item in Model)
+                {
+                    <div class="blog-item">
+                        <div class="bi-pic">
+                            <img src="../../uploads/@item.Image" alt="">
+                        </div>
+                        <div class="bi-text">
+                            <h5>
+                                <a asp-action="BlogDetail" asp-controller="Blog" asp-route-Id="@item.Id">
+                                    @item.Title
+                                </a>
+                            </h5>
+                            <ul>
+                                <li>@item.OrganizationTime.ToString("yyyy-MM-dd HH:mm:ss")</li>
+                            </ul>
+                            <p>
+                                @item.Description.Substring(0, 200) ...
+                            </p>
+                        </div>
                     </div>
-                    <div class="bi-text">
-                        <h5>
-                            <a href="./blog-details.html">
-                                Vegan White Peach Mug Cobbler With Cardam Vegan White Peach Mug
-                                Cobbler...
-                            </a>
-                        </h5>
-                        <ul>
-                            <li>by Admin</li>
-                            <li>Aug,15, 2019</li>
-                        </ul>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua accumsan lacus facilisis.
-                        </p>
-                    </div>
-                </div>
-                <div class="blog-item">
-                    <div class="bi-pic">
-                        <img src="img/blog/blog-2.jpg" alt="">
-                    </div>
-                    <div class="bi-text">
-                        <h5>
-                            <a href="./blog-details.html">
-                                Vegan White Peach Mug Cobbler With Cardam Vegan White Peach Mug
-                                Cobbler...
-                            </a>
-                        </h5>
-                        <ul>
-                            <li>by Admin</li>
-                            <li>Aug,15, 2019</li>
-                        </ul>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua accumsan lacus facilisis.
-                        </p>
-                    </div>
-                </div>
-                <div class="blog-item">
-                    <div class="bi-pic">
-                        <img src="img/blog/blog-3.jpg" alt="">
-                    </div>
-                    <div class="bi-text">
-                        <h5>
-                            <a href="./blog-details.html">
-                                Vegan White Peach Mug Cobbler With Cardam Vegan White Peach Mug
-                                Cobbler...
-                            </a>
-                        </h5>
-                        <ul>
-                            <li>by Admin</li>
-                            <li>Aug,15, 2019</li>
-                        </ul>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua accumsan lacus facilisis.
-                        </p>
-                    </div>
-                </div>
-                <div class="blog-item">
-                    <div class="bi-pic">
-                        <img src="img/blog/blog-4.jpg" alt="">
-                    </div>
-                    <div class="bi-text">
-                        <h5>
-                            <a href="./blog-details.html">
-                                Vegan White Peach Mug Cobbler With Cardam Vegan White Peach Mug
-                                Cobbler...
-                            </a>
-                        </h5>
-                        <ul>
-                            <li>by Admin</li>
-                            <li>Aug,15, 2019</li>
-                        </ul>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua accumsan lacus facilisis.
-                        </p>
-                    </div>
-                </div>
-                <div class="blog-item">
-                    <div class="bi-pic">
-                        <img src="img/blog/blog-5.jpg" alt="">
-                    </div>
-                    <div class="bi-text">
-                        <h5>
-                            <a href="./blog-details.html">
-                                Vegan White Peach Mug Cobbler With Cardam Vegan White Peach Mug
-                                Cobbler...
-                            </a>
-                        </h5>
-                        <ul>
-                            <li>by Admin</li>
-                            <li>Aug,15, 2019</li>
-                        </ul>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua accumsan lacus facilisis.
-                        </p>
-                    </div>
-                </div>
-                <div class="blog-pagination">
-                    <a href="#">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">Next</a>
-                </div>
+                }
             </div>
         </div>
     </div>

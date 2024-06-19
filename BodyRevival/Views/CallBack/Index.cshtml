@@ -1,7 +1,8 @@
-﻿@{
+﻿@using BodyRevival.Models
+@model Communication
+@{
     ViewData["Title"] = "Index";
 }
-
 <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb-bg.jpg">
     <div class="container">
         <div class="row">
@@ -24,31 +25,18 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <div class="section-title contact-title">
-                    <span>Contact Us</span>
-                    <h2>GET IN TOUCH</h2>
-                </div>
-                <div class="contact-widget">
-                    <div class="cw-text">
-                        <i class="fa fa-map-marker"></i>
-                        <p>Nerimanov rayonu, Tebriz küçesi ,<br /> 21A</p>
-                        <p>Tefekkür üniversitetinin yanında, Komfort Hayat yaşayış binasının altı </p>
-
-                    </div>
-                    <div class="cw-text">
-                        <i class="fa fa-mobile"></i>
-                        <ul>
-                            <li>050 883 68 65 </li>
-                        </ul>
-                    </div>
-                    <div class="cw-text email">
-                        <i class="fa fa-envelope"></i>
-                        <p>bodyrevivalmethod@gmail.com</p>
-                    </div>
+                <div class="leave-comment">
+                    <form method="post" asp-action="SendMessage">
+                        <input asp-for="Name" type="text" placeholder="Name">
+                        <input asp-for="Number" type="text" placeholder="Number">
+                        <input asp-for="Subject" type="text" placeholder="Subject">
+                        <textarea asp-for="Question" placeholder="Comment"></textarea>
+                        <button type="submit">Send</button>
+                    </form>
                 </div>
             </div>
             <div class="col-lg-6">
-               <img src="~/img/about-us.jpg" />
+                <img src="~/img/about-us.jpg" />
             </div>
         </div>
         <div class="map">
@@ -58,4 +46,3 @@
 
     </div>
 </section>
-
