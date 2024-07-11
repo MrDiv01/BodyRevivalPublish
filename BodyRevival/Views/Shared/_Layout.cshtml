@@ -51,24 +51,31 @@
                 <li><a asp-action="Index" asp-controller="Blog">Blog</a></li>
                 <li><a asp-action="Index" asp-controller="Contact">Contact</a></li>
                 <li><a asp-action="Index" asp-controller="Video">Videos</a></li>
+                <li><a asp-action="Index" asp-controller="CallBack">Help</a></li>
+
 
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div class="canvas-social">
-            @if (User.Identity.IsAuthenticated)
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Teacher"))
+            {
+                <a asp-action="Logout" asp-controller="Login"><i class="fa-solid fa-right-to-bracket"></i></a>
+                <a asp-action="Profile" asp-controller="ConfigureTeacher" asp-area="Admin"><i class="fa-solid fa-user"></i></a>
+
+            }
+            @if (User.Identity.IsAuthenticated && !User.IsInRole("Teacher"))
             {
                 <a asp-action="Logout" asp-controller="Login"><i class="fa-solid fa-right-to-bracket"></i></a>
             }
             else
             {
                 <a asp-action="index" asp-controller="Login"><i class="fa-solid fa-user-plus"></i></a>
-
             }
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
+          @*   <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a> *@
             <a href="#"><i class="fa fa-youtube-play"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.instagram.com/bodyrevival.studio/"><i class="fa fa-instagram"></i></a>
         </div>
     </div>
     <!-- Offcanvas Menu Section End -->
@@ -107,6 +114,7 @@
 
                             <li><a asp-action="Index" asp-controller="Contact">Contact</a></li>
                             <li><a asp-action="Index" asp-controller="Video">Videos</a></li>
+                            <li><a asp-action="Index" asp-controller="CallBack">Help</a></li>
 
 
                         </ul>
@@ -116,19 +124,24 @@
                     <div class="top-option">
 
                         <div class="to-social">
-                            @if (User.Identity.IsAuthenticated)
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Teacher"))
+                            {
+                                <a asp-action="Logout" asp-controller="Login"><i class="fa-solid fa-right-to-bracket"></i></a>
+                                <a asp-action="Profile" asp-controller="ConfigureTeacher" asp-area="Admin"><i class="fa-solid fa-user"></i></a>
+
+                            }
+                            else if(User.Identity.IsAuthenticated && !User.IsInRole("Teacher"))
                             {
                                 <a asp-action="Logout" asp-controller="Login"><i class="fa-solid fa-right-to-bracket"></i></a>
                             }
                             else
                             {
                                 <a asp-action="index" asp-controller="Login"><i class="fa-solid fa-user-plus"></i></a>
-
                             }
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
+@*                             <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a> *@
                             <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="https://www.instagram.com/bodyrevival.studio/"><i class="fa fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>

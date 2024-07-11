@@ -75,8 +75,9 @@ namespace BodyRevival.Areas.Admin.Controllers
         [HttpGet]
 
         [Authorize(Roles = "SuperAdmin")]
-        public IActionResult Register()
+        public async Task<IActionResult> Register()
         {
+            ViewBag.packets = await _dbContext.Packet.ToListAsync();
             return View();
         }
         [HttpPost]
@@ -122,6 +123,14 @@ namespace BodyRevival.Areas.Admin.Controllers
                     return View();
                 }
             }
+            var packet = _dbContext.Packet.FirstOrDefaultAsync(x=>x.Id == model.PacketId);
+            Student student = new()
+            {
+                UserId = member.Id,
+                PacketId = model.PacketId,
+            };
+            await _dbContext.Students.AddAsync(student);
+            await _dbContext.SaveChangesAsync();
             return RedirectToAction("Index", "Dashboard");
         }
         [HttpGet]

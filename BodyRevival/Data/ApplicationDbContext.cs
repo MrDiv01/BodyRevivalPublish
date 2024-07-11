@@ -18,7 +18,7 @@ namespace BodyRevival.Data
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Customers> Customers { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
-
+        public DbSet<Student> Students { get; set; }
 
     }
 }

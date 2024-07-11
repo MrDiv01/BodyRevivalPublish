@@ -1,8 +1,10 @@
 ﻿using BodyRevival.Areas.Admin.ViewModels;
+using BodyRevival.Data;
 using BodyRevival.Models;
 using BodyRevival.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BodyRevival.Controllers
 {
@@ -10,11 +12,13 @@ namespace BodyRevival.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly ApplicationDbContext _dbContext;
 
-        public LoginController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public LoginController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ApplicationDbContext dbContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _dbContext = dbContext;
         }
         public async Task<IActionResult> Index()
         {
@@ -39,7 +43,17 @@ namespace BodyRevival.Controllers
                 ModelState.AddModelError("", "Email or Password is Incorrect");
                 return View();
             }
-            return RedirectToAction("Index", "Home");
+            var role = await _userManager.GetRolesAsync(user);
+            if (role.Contains("Teacher"))
+            {
+                Teacher teacher = await _dbContext.Teacher.FirstOrDefaultAsync(x => x.UserId == user.Id);
+                if (teacher.IsUpdated == false)
+                {
+
+                    return RedirectToAction("Profile", "ConfigureTeacher", new { area = "Admin" });
+                }
+            }
+                return RedirectToAction("Index", "Home");
         }
         public async Task<IActionResult> LogOut()
         {
@@ -48,7 +62,7 @@ namespace BodyRevival.Controllers
 
                 await _signInManager.SignOutAsync();
             }
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

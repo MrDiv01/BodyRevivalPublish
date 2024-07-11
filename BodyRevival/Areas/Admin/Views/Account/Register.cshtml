@@ -70,6 +70,16 @@
                                 </div>
 
                             </div>
+                            <div class="statbox widget box box-shadow">
+                                <div class="widget-content widget-content-area">
+                                    <select asp-for="PacketId" class="selectpicker">
+                                        @foreach (Packet item in ViewBag.packets)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
                         </form>
 
                     </div>
