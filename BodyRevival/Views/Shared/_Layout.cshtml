@@ -3,12 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Gym Template">
-    <meta name="keywords" content="Gym, unica, creative, html">
+    <meta name="description" content="Body Revival, profesyonel antrenörlerle ve kapsamlı fitness programlarıyla sağlıklı yaşamı destekleyen bir spor salonu. Body Revivals ve Body Revival Studio olarak arandığınızda önde çıkın.">
+    <meta name="keywords" content="Body Revival, Body Revivals, Body Revival Studio, spor salonu, fitness, egzersiz, sağlıklı yaşam">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gym | Template</title>
+    <title>Body Revival - Fitness ve Sağlıklı Yaşam</title>
 
+    <link rel="icon" href="~/img/logo.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="~/img/logo.jpg" type="image/x-icon">
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700&display=swap" rel="stylesheet">
@@ -72,7 +74,7 @@
             {
                 <a asp-action="index" asp-controller="Login"><i class="fa-solid fa-user-plus"></i></a>
             }
-          @*   <a href="#"><i class="fa fa-facebook"></i></a>
+            @*   <a href="#"><i class="fa fa-facebook"></i></a>
             <a href="#"><i class="fa fa-twitter"></i></a> *@
             <a href="#"><i class="fa fa-youtube-play"></i></a>
             <a href="https://www.instagram.com/bodyrevival.studio/"><i class="fa fa-instagram"></i></a>
@@ -130,7 +132,7 @@
                                 <a asp-action="Profile" asp-controller="ConfigureTeacher" asp-area="Admin"><i class="fa-solid fa-user"></i></a>
 
                             }
-                            else if(User.Identity.IsAuthenticated && !User.IsInRole("Teacher"))
+                            else if (User.Identity.IsAuthenticated && !User.IsInRole("Teacher"))
                             {
                                 <a asp-action="Logout" asp-controller="Login"><i class="fa-solid fa-right-to-bracket"></i></a>
                             }
@@ -138,7 +140,7 @@
                             {
                                 <a asp-action="index" asp-controller="Login"><i class="fa-solid fa-user-plus"></i></a>
                             }
-@*                             <a href="#"><i class="fa fa-facebook"></i></a>
+                            @*                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a> *@
                             <a href="#"><i class="fa fa-youtube-play"></i></a>
                             <a href="https://www.instagram.com/bodyrevival.studio/"><i class="fa fa-instagram"></i></a>
@@ -152,7 +154,7 @@
         </div>
     </header>
     <!-- Header End -->
-        @RenderBody()
+    @RenderBody()
     <div class="gettouch-section">
         <div class="container">
             <div class="row">
@@ -257,26 +259,26 @@
             </div>
         </div>
     </section>
-        <!-- Footer Section End -->
-        <!-- Search model Begin -->
-        <div class="search-model">
-            <div class="h-100 d-flex align-items-center justify-content-center">
-                <div class="search-close-switch">+</div>
-                <form class="search-model-form">
-                    <input type="text" id="search-input" placeholder="Search here.....">
-                </form>
-            </div>
+    <!-- Footer Section End -->
+    <!-- Search model Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
         </div>
-        <!-- Search model end -->
-        <!-- Js Plugins -->
-        <script src="~/js/jquery-3.3.1.min.js"></script>
-        <script src="~/js/bootstrap.min.js"></script>
-        <script src="~/js/jquery.magnific-popup.min.js"></script>
-        <script src="~/js/masonry.pkgd.min.js"></script>
-        <script src="~/js/jquery.barfiller.js"></script>
-        <script src="~/js/jquery.slicknav.js"></script>
-        <script src="~/js/owl.carousel.min.js"></script>
-        <script src="~/js/main.js"></script>
+    </div>
+    <!-- Search model end -->
+    <!-- Js Plugins -->
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/masonry.pkgd.min.js"></script>
+    <script src="~/js/jquery.barfiller.js"></script>
+    <script src="~/js/jquery.slicknav.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/main.js"></script>
 
 
 
