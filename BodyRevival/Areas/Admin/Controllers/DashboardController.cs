@@ -2,11 +2,12 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 
 namespace BodyRevival.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "SuperAdmin")]
+    //[Authorize(Roles = "SuperAdmin")]
     public class DashboardController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -26,9 +27,10 @@ namespace BodyRevival.Areas.Admin.Controllers
         //    AppUser user = new AppUser()
         //    {
         //        FullName = "Ali",
-        //        UserName = "SuperAdmin"
+        //        UserName = "Admin",
+        //        Email = "bodyrevivals@gmail.com"
         //    };
-        //   var result = await _userManager.CreateAsync(user,"BodyRevival2003");
+        //    var result = await _userManager.CreateAsync(user, "BodyRevivals001.");
         //    return Ok(result);
         //}
         //public async Task<IActionResult> CreateRole()
@@ -43,9 +45,10 @@ namespace BodyRevival.Areas.Admin.Controllers
         //}
         //public async Task<IActionResult> AddRole()
         //{
-        //    AppUser user = await _userManager.FindByNameAsync("SuperAdmin");
-        //   await _userManager.AddToRoleAsync(user,"SuperAdmin");
+        //    AppUser user = await _userManager.FindByNameAsync("Admin");
+        //    await _userManager.AddToRoleAsync(user, "SuperAdmin");
         //    return Ok("Verildi");
         //}
+        
     }
 }
