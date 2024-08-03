@@ -15,7 +15,7 @@ namespace BodyRevival.Areas.Admin.Controllers
 
         public DashboardController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            _userManager = userManager;
+             _userManager = userManager;
             _roleManager = roleManager;
         }
         public IActionResult Index()
