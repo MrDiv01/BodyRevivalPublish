@@ -5,24 +5,25 @@
 }
 <section class="hero-section">
     <div class="hs-slider owl-carousel">
-        @foreach(var item in Model.slider)
+        @foreach (var item in Model.slider)
         {
-        <div class="hs-item set-bg" data-setbg="uploads/@item.Image">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 offset-lg-6">
-                        <div class="hi-text">
-                            <span>@item.FirstMotivationWord</span>
-                            <h1>@item.SecondMotivationWord</h1>
-                            <a href="@item.ButtonUrl" class="primary-btn">@item.ButtonText</a>
+            <div class="hs-item set-bg" data-setbg="uploads/@item.Image">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 offset-lg-6">
+                            <div class="hi-text">
+                                <span>@item.FirstMotivationWord</span>
+                                <h1>@item.SecondMotivationWord</h1>
+                                <a href="@item.ButtonUrl" class="primary-btn">@item.ButtonText</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         }
     </div>
 </section>
+
 <!-- Hero Section End -->
 <!-- ChoseUs Section Begin -->
 <section class="choseus-section spad">
@@ -231,3 +232,73 @@
         </div>
     </div>
 </section>
+<style>
+    /* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Hero section styling */
+.hero-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.hs-slider .hs-item {
+    position: relative;
+    height: 100vh; /* Full viewport height */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hs-slider .hs-item .hi-text {
+    text-align: center;
+    color: #fff;
+    max-width: 600px;
+}
+
+.hs-slider .hi-text span {
+    display: block;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.hs-slider .hi-text h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hs-slider .primary-btn {
+    background-color: #ff5722;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+media (max-width: 768px) {
+    .hs-slider .hs-item {
+        height: 50vh; /* Reduce height on smaller screens */
+    }
+
+    .hs-slider .hi-text h1 {
+        font-size: 36px;
+    }
+
+    .hs-slider .hi-text span {
+        font-size: 18px;
+    }
+
+    .hs-slider .primary-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+</style>
