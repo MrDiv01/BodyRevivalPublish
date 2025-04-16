@@ -21,6 +21,10 @@ jobs:
       - name: 🔨 Build və Publish et
         run: dotnet publish -c Release -o publish
 
+      # Yeni Test Adımı
+      - name: 🚀 Testləri çalıştır
+        run: dotnet test
+
       - name: 📤 FTP ilə hostingə göndər
         uses: SamKirkland/FTP-Deploy-Action@v4
         with:
