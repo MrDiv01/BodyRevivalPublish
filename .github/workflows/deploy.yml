@@ -25,9 +25,9 @@ jobs:
         run: dotnet test
 
       - name: 📤 FTP ilə hostingə göndər
-        uses: SamKirkland/FTP-Deploy-Action@v4 # Updated version
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./publish
+  uses: SamKirkland/FTP-Deploy-Action@v4.3.2 # Use the latest stable release
+  with:
+    server: ${{ secrets.FTP_SERVER }}
+    username: ${{ secrets.FTP_USERNAME }}
+    password: ${{ secrets.FTP_PASSWORD }}
+    local-dir: ./publish
