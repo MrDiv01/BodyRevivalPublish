@@ -29,7 +29,7 @@ namespace BodyRevival.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(AdminLoginViewModel adminLogin)
         {
-            await AddAdmin();
+            //await AddAdmin();
 
             if (!ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace BodyRevival.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(MemberRegisterViewModel model)
         {
-            
+
 
 
             if (!ModelState.IsValid)
@@ -125,7 +125,7 @@ namespace BodyRevival.Areas.Admin.Controllers
                     return View();
                 }
             }
-            var packet = _dbContext.Packet.FirstOrDefaultAsync(x=>x.Id == model.PacketId);
+            var packet = _dbContext.Packet.FirstOrDefaultAsync(x => x.Id == model.PacketId);
             Student student = new()
             {
                 UserId = member.Id,
@@ -199,48 +199,48 @@ namespace BodyRevival.Areas.Admin.Controllers
             return RedirectToAction("Index", "Dashboard");
         }
 
-        public async Task AddAdmin()
-        {
-            string email = "bodyrevival@gmail.com";
-            string password = "Bodyrevival123.";
-            string name = "BodyRevival";
-            string username = "BodyRevival";
+        //public async Task AddAdmin()
+        //{
+        //    string email = "bodyrevival@gmail.com";
+        //    string password = "Bodyrevival123.";
+        //    string name = "BodyRevival";
+        //    string username = "BodyRevival";
 
-            // RoleManager servisini al
-            var roleManager = HttpContext.RequestServices.GetRequiredService<RoleManager<IdentityRole>>();
+        //    // RoleManager servisini al
+        //    var roleManager = HttpContext.RequestServices.GetRequiredService<RoleManager<IdentityRole>>();
 
-            // Eğer SuperAdmin rolü yoksa oluştur
-            //var roleExists = await roleManager.RoleExistsAsync("SuperAdmin");
-            var roleExists = await roleManager.RoleExistsAsync("Teacher");
-            var roleExists2 = await roleManager.RoleExistsAsync("Student");
+        //    // Eğer SuperAdmin rolü yoksa oluştur
+        //    var roleExists = await roleManager.RoleExistsAsync("SuperAdmin");
+        //    var roleExists1 = await roleManager.RoleExistsAsync("Teacher");
+        //    var roleExists2 = await roleManager.RoleExistsAsync("Student");
 
-            if (!roleExists && !roleExists2)
-            {
-                //await roleManager.CreateAsync(new IdentityRole("SuperAdmin"));
-                await roleManager.CreateAsync(new IdentityRole("Teacher"));
-                await roleManager.CreateAsync(new IdentityRole("Student"));
-            }
+        //    if (!roleExists || !roleExists2 || !roleExists )
+        //    {
+        //        await roleManager.CreateAsync(new IdentityRole("SuperAdmin"));
+        //        await roleManager.CreateAsync(new IdentityRole("Teacher"));
+        //        await roleManager.CreateAsync(new IdentityRole("Student"));
+        //    }
 
-            // Kullanıcı zaten varsa tekrar oluşturma
-            var existingUser = await _userManager.FindByEmailAsync(email);
-            if (existingUser != null)
-                return;
+        //    // Kullanıcı zaten varsa tekrar oluşturma
+        //    var existingUser = await _userManager.FindByEmailAsync(email);
+        //    if (existingUser != null)
+        //        return;
 
-            AppUser user = new AppUser
-            {
-                Email = email,
-                UserName = username,
-                FullName = name
-            };
+        //    AppUser user = new AppUser
+        //    {
+        //        Email = email,
+        //        UserName = username,
+        //        FullName = name
+        //    };
 
-            var result = await _userManager.CreateAsync(user, password);
-            if (result.Succeeded)
-            {
-                await _userManager.AddToRoleAsync(user, "SuperAdmin");
-            }
-        }
-
-
-
+        //    var result = await _userManager.CreateAsync(user, password);
+        //    if (result.Succeeded)
+        //    {
+        //        await _userManager.AddToRoleAsync(user, "SuperAdmin");
+        //    }
     }
+
+
+
+
 }
