@@ -19,7 +19,8 @@ namespace BodyRevival.Controllers
            List<Blog> blogs = await _dbContext.Blogs.ToListAsync();
             if (blogs == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "ErrorPage");
+
             }
             return View(blogs);
         }
@@ -28,7 +29,8 @@ namespace BodyRevival.Controllers
             Blog blog =await _dbContext.Blogs.FirstOrDefaultAsync(b => b.Id == id);
             if (blog == null)
             {
-                return NotFound();
+                return RedirectToAction("Index", "ErrorPage");
+
             }
             return View(blog);
         }

@@ -17,7 +17,8 @@ namespace BodyRevival.Controllers
         {
             List<Teacher> teachers = await _dbContext.Teacher.Include(x => x.User).Where(_ => _.IsUpdated == true).ToListAsync();
            if(teachers.Count == 0)
-                return NotFound();  
+                return RedirectToAction("Index", "ErrorPage");
+
             return View(teachers);
         }
     }

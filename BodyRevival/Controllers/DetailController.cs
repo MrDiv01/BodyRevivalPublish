@@ -16,6 +16,10 @@ namespace BodyRevival.Controllers
         public async Task<IActionResult> Index(int id)
         {
             Packet packet  =await _dbContext.Packet.Include(x=>x.Teacher).ThenInclude(c=>c.User).FirstOrDefaultAsync(_=>_.Id == id);
+            if(packet == null)
+            {
+                return RedirectToAction("Index", "ErrorPage");
+            }
             return View(packet);
         }
     }

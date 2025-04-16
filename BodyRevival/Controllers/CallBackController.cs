@@ -20,6 +20,11 @@ namespace BodyRevival.Controllers
         [HttpPost]
         public IActionResult SendMessage(Communication communication)
         {
+            if (communication == null)
+            {
+                return RedirectToAction("Index", "ErrorPage");
+
+            }
             _dbContext.Communications.Add(communication);
             _dbContext.SaveChanges();
             return RedirectToAction("Index","Home");

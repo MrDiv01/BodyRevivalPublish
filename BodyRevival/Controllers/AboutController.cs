@@ -21,8 +21,8 @@ namespace BodyRevival.Controllers
                 teachers = await _dbContext.Teacher.Include(x => x.User).Where(_ => _.IsUpdated == true).ToListAsync(),
                 about = await _dbContext.About.FirstOrDefaultAsync()
             };
-            if(viewModel == null)
-                return NotFound();
+            if(viewModel.about == null)
+                return RedirectToAction("Index", "ErrorPage");
             return View(viewModel);
         }
     }

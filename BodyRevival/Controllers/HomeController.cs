@@ -18,13 +18,14 @@ namespace BodyRevival.Controllers
         {
             HomeViewModel viewModel = new()
             {
-                teachers =await _dbContext.Teacher.Include(x=>x.User).Where(_ => _.IsUpdated == true).ToListAsync(),
-                 slider =await _dbContext.HomeSliders.ToListAsync(),
-                  packets = await _dbContext.Packet.ToListAsync(),
-                  lessons = await _dbContext.Lessons.ToListAsync(),
+                teachers = await _dbContext.Teacher.Include(x => x.User).Where(_ => _.IsUpdated == true).ToListAsync(),
+                slider = await _dbContext.HomeSliders.ToListAsync(),
+                packets = await _dbContext.Packet.ToListAsync(),
+                lessons = await _dbContext.Lessons.ToListAsync(),
             };
-            if(viewModel.teachers == null)
-                return NotFound();
+            if (viewModel.teachers == null || viewModel.slider == null || viewModel.packets == null || viewModel.lessons == null)
+                return RedirectToAction("Index", "ErrorPage");
+
             return View(viewModel);
         }
     }

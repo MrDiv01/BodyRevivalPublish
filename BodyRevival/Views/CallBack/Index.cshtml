@@ -46,3 +46,16 @@
 
     </div>
 </section>
+<script>
+    document.querySelector("form").addEventListener("submit", function (e) {
+        const name = document.querySelector("input[name='Name']").value.trim();
+        const number = document.querySelector("input[name='Number']").value.trim();
+        const subject = document.querySelector("input[name='Subject']").value.trim();
+        const question = document.querySelector("textarea[name='Question']").value.trim();
+
+        if (!name || !number || !subject || !question) {
+            e.preventDefault(); // form gönderimini durdur
+            alert("Please fill in all the fields.");
+        }
+    });
+</script>
